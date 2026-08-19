@@ -1,0 +1,9 @@
+%{ for group_name, hosts in groups ~}
+[${group_name}]
+%{ for h in hosts ~}
+${h.name} ansible_host=${h.ip} fqdn=${h.fqdn}
+%{ endfor ~}
+
+%{ endfor ~}
+[all:vars]
+ansible_user=ubuntu
